@@ -45,12 +45,13 @@
                                                 <i class="prefix-icon anticon anticon-lock"></i>
                                                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                                             </div>
+                                            @if($errors->has('email'))
+                                            <span class="text-danger mt-1" style="font-size: 9pt;">{{$errors->first('email')}}</span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <span class="font-size-13 text-muted">
-                                                    Don't have an account?
-                                                    <a class="small" href="{{ route('register') }}"> Sign up</a>
                                                 </span>
                                                 <button class="btn btn-primary">{{ __('Login') }}</button>
                                             </div>
@@ -62,7 +63,7 @@
                     </div>
                 </div>
                 <div class="d-none d-md-flex p-h-40 justify-content-between">
-                    <span class="">© 2019 ThemeNate</span>
+                    <span class="">© 2022 ThemeNate</span>
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <a class="text-dark text-link" href="">Legal</a>

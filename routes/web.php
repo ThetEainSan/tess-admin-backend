@@ -15,9 +15,14 @@ use App\Http\Controllers\AdminController;
 |
 */
 
+Route::get('/', function(){
+    return view('auth.login');
+});
+
 Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
+    //Admins
+    Route::get('/admins', [AdminController::class, 'index'])->name('admins');
+});
 
-Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
-
-//Admins
-Route::get('/admins', [AdminController::class, 'index'])->name('admins');
