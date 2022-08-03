@@ -7,7 +7,7 @@
     <title>@yield('title')</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+    <link rel="shortcut icon" href="assets/images/logo/Tess.png">
 
     <!-- page css -->
     <link href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
@@ -15,6 +15,24 @@
     <!-- Core css -->
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet">
     @yield('styles')
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        .btn-primary {
+            background: #02ace0 !important;
+            outline:none;
+            border: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,12 +46,12 @@
                         <img class="logo-fold" src="assets/images/logo/logo-fold.png" alt="Logo">
                     </a>
                 </div>
-                <div class="logo logo-white">
+                {{-- <div class="logo logo-white">
                     <a href="index.html">
                         <img src="assets/images/logo/logo-white.png" alt="Logo">
                         <img class="logo-fold" src="assets/images/logo/logo-fold-white.png" alt="Logo">
                     </a>
-                </div>
+                </div> --}}
                 <div class="nav-wrap">
                     <ul class="nav-left">
                         <li class="desktop-toggle">
