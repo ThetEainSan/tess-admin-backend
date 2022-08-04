@@ -45,7 +45,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/employees/delete', [EmployeeController::class, 'delete'])->name('employees.delete');
 
     //Foods
-    Route::get('/food', [InventoryController::class, 'foodIndex'])->name('foods');
+    Route::get('/foods', [InventoryController::class, 'foodIndex'])->name('foods');
+    Route::get('/foods/create', [InventoryController::class, 'foodCreate'])->name('foods.create');
+    Route::post('/foods/store', [InventoryController::class, 'foodStore'])->name('foods.store');
+    Route::get('/foods/edit', [InventoryController::class, 'foodEdit'])->name('foods.edit');
 
 });
 

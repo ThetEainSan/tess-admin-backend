@@ -64,7 +64,7 @@ class EmployeeController extends Controller
        $employee->avatar = $profileImage;
        $employee->save();
 
-       return redirect('employees')->with('success', 'Employee Created Successfully!');;
+       return redirect('employees')->with('success', 'Employee Created Successfully!');
     }
 
     public function edit(Request $request){

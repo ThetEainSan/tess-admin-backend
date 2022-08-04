@@ -41,7 +41,7 @@
                         <a href="{{ route('foods') }}">Food</a>
                     </li>
                     <li>
-                        <a href="{{ route('drinks') }}">Drinks</a>
+                        <a href="">Drinks</a>
                     </li>
                 </ul>
             </li>
