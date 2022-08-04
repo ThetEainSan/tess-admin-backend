@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\InventoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +35,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admins/edit', [AdminController::class, 'edit'])->name('admins.edit');
     Route::post('/admins/update', [AdminController::class, 'update'])->name('admins.update');
     Route::get('/admins/delete', [AdminController::class, 'delete'])->name('admins.delete');
+
+    //Employees
+    Route::get('/employees', [EmployeeController::class, 'index'])->name('employees');
+    Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
+    Route::post('/employees/store', [EmployeeController::class, 'store'])->name('employees.store');
+    Route::get('/employees/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
+    Route::post('/employees/update', [EmployeeController::class, 'update'])->name('employees.update');
+    Route::get('/employees/delete', [EmployeeController::class, 'delete'])->name('employees.delete');
+
+    //Foods
+    Route::get('/food', [InventoryController::class, 'foodIndex'])->name('foods');
+
 });
 

@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Employee;
 use DB;
 use Hash;
-use App\helpers;
 
-class AdminController extends Controller
+class EmployeeController extends Controller
 {
     public function index(){
-        $admins = User::all();
-        return view('admin.index',['admins' => $admins]);
+        $employees = Employee::all();
+        return view('employee.index',['employees' => $employees]);
     }
 
     public function create(){
@@ -25,7 +24,7 @@ class AdminController extends Controller
                         ->orderBy('id')
                         ->get();
 
-        return view('admin.create', ['nrc_numbers' => $nrc_numbers, 'states' => $states]);
+        return view('employee.create', ['nrc_numbers' => $nrc_numbers, 'states' => $states]);
     }
 
     public function getTownship(Request $request)
@@ -39,11 +38,11 @@ class AdminController extends Controller
     }
 
     public function store(Request $request){
-        // dd($request);
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|unique:users|email',
-            'phone' => 'required|unique:users',
+            'email' => 'required|unique:employees|email',
+            'type' => 'required',
+            'phone' => 'required|unique:employees',
             'nrc_no' => 'required',
             'nrc_location' => 'required',
             'nrc_type' => 'required',
@@ -55,22 +54,21 @@ class AdminController extends Controller
         ]);
         if ($request->file('avatar')) {
             $image = $request->file('avatar');
-            $destinationPath = 'img/admin';
+            $destinationPath = 'img/employee';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
         }
 
        $validated['password'] = Hash::make($validated['password']);
-       $admin = User::Create($validated);
-       $admin->avatar = $profileImage;
-       $admin->save();
+       $employee = Employee::Create($validated);
+       $employee->avatar = $profileImage;
+       $employee->save();
 
-       return redirect('admins')->with('success', 'Admin Created Successfully!');
+       return redirect('employees')->with('success', 'Employee Created Successfully!');;
     }
 
-    public function edit(Request $request)
-    {
-        $admin = User::find($request->id);
+    public function edit(Request $request){
+        $employee = Employee::find($request->id);
 
         $nrc_numbers = DB::table('nrc_prefix')
                             ->orderBy('state_id_en')
@@ -81,17 +79,18 @@ class AdminController extends Controller
                         ->orderBy('id')
                         ->get();
 
-        return view('admin.edit', ['admin' => $admin, 
+        return view('employee.edit', ['employee' => $employee, 
                                         'nrc_numbers' => $nrc_numbers,
                                         'states' => $states,
                                         ]);
     }
 
     public function update(Request $request){
-        $admin = User::findOrFail($request->id);
+        $employee = Employee::findOrFail($request->id);
         $validated = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email',
+            'type' => 'required',
             'phone' => 'required',
             'nrc_no' => 'required',
             'nrc_location' => 'required',
@@ -103,41 +102,42 @@ class AdminController extends Controller
             'city' => 'required',
         ]);
 
-        $admin->name = $validated['name'];
-        $admin->email = $validated['email'];
-        $admin->phone = $validated['phone'];
-        $admin->nrc_no = $validated['nrc_no'];
-        $admin->nrc_location = $validated['nrc_location'];
-        $admin->nrc_type = $validated['nrc_type'];
-        $admin->nrc_number = $validated['nrc_number'];
-        $admin->address = $validated['address'];
-        $admin->state = $validated['state'];
-        $admin->city = $validated['city'];
+        $employee->name = $validated['name'];
+        $employee->email = $validated['email'];
+        $employee->type = $validated['type'];
+        $employee->phone = $validated['phone'];
+        $employee->nrc_no = $validated['nrc_no'];
+        $employee->nrc_location = $validated['nrc_location'];
+        $employee->nrc_type = $validated['nrc_type'];
+        $employee->nrc_number = $validated['nrc_number'];
+        $employee->address = $validated['address'];
+        $employee->state = $validated['state'];
+        $employee->city = $validated['city'];
 
         if ($request->file('avatar')) {
             $image = $request->file('avatar');
-            $destinationPath = 'img/admin';
+            $destinationPath = 'img/employee';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            if($admin->avatar == ''){
+            if($employee->avatar == ''){
                 $image->move($destinationPath, $profileImage);
-                $admin->avatar = $profileImage;
+                $employee->avatar = $profileImage;
             }else {
-                DeleteImage($destinationPath, $admin->avatar);
+                DeleteImage($destinationPath, $employee->avatar);
                 $image->move($destinationPath, $profileImage);
-                $admin->avatar = $profileImage;
+                $employee->avatar = $profileImage;
             }
         }
-        $admin->save();
+        $employee->save();
 
-        return redirect('admins')->with('success', 'Admin Edited Successfully !');
+        return redirect('employees')->with('success', 'Employee Edited Successfully !');
     }
 
     public function delete(Request $request){
-        $admin = User::findOrFail($request->id);
-        $destinationPath = 'img/admin';
-        DeleteImage($destinationPath, $admin->avatar);
-        $admin->delete();
+        $employee = Employee::findOrFail($request->id);
+        $destinationPath = 'img/employee';
+        DeleteImage($destinationPath, $employee->avatar);
+        $employee->delete();
     
-        return redirect('admins')->with('success', 'Admin Deleted !');
+        return redirect('employees')->with('success', 'Employee Deleted Duccessfully!');
     }
 }
