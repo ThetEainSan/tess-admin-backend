@@ -22,12 +22,12 @@
 
         <div class="card">
             <div class="card-body">
-                <h3>Edit Food</h3>
+                <h3>Create new Food</h3>
                 <div class="m-t-25">
-                    <form method="post" action="" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('foods.update') }}" enctype="multipart/form-data">
                          @csrf
+                         <input type="hidden" name="id" value="{{ $food->id}}>
                         <div class="row">
-                            <input type="hidden" id="id" name="id" value="{{ $food->id }}">
                             <div class="form-group col-md-4">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" value="{{ $food->name }}"
@@ -36,7 +36,7 @@
                             <div class="form-group col-md-4">
                                 <label for="price">Price</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" id="price">
+                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" id="price" value="{{ $food->price }}">
                                     <div class="input-group-append">
                                         <span class="input-group-text">.00</span>
                                     </div>
@@ -46,99 +46,30 @@
                                 <label for="quantity">Quantity</label>
                                 <input type="number" class="form-control" id="quantity" name="quantity" value="{{ $food->quantity }}"
                                     required>
-                            </div> 
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ $employee->email }}"
-                                    required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="email">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Password" name="password"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-3">
-                                <label for="nrc_no">No</label>
-                                <div class="m-b-15">
-                                    <select class="form-control" name="nrc_no" id="nrc_no" required>
-                                        @for ($i = 1; $i <= 14; $i++)
-                                            <option value="{{ $i }}" {{ $employee->nrc_no == $i ? 'selected' : ''}}>
-                                                {{ $i }}/
-                                            </option>
-                                        @endfor
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="nrc_location">Location</label>
-                                <div class="m-b-15">
-                                    <select class="form-control" name="nrc_location" id="nrc_location" required>
-                                        @foreach ($nrc_numbers as $nrc_number)
-                                            @if($employee->nrc_location == $nrc_number->id)
-                                                <option value="{{ $nrc_number->id }}" selected>{{ $nrc_number->prefix_en }}</option>
-                                            @else
-                                                <option value="{{ $nrc_number->id }}">{{ $nrc_number->prefix_en }}</option>
-                                            @endif                                            
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-3">
-                                @php
-                                    $nrc_types = ['N', 'E', 'P', 'A', 'F', 'TH', 'G'];
-                                @endphp
-                                <label for="inputState">Type</label>
-                                <select id="inputState" class="form-control" name="nrc_type">
-                                    @foreach ($nrc_types as $nrc_type)
-                                        @if ($nrc_type == $employee->nrc_type)
-                                            <option value="{{ $nrc_type }}" selected>({{ $nrc_type }})</option> 
-                                        @else
-                                            <option value="{{ $nrc_type }}">({{ $nrc_type }})</option> 
-                                        @endif                                   
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="nrc_number">Number</label>
-                                <input type="number" class="form-control" id="nrc_number" value="{{ $employee->nrc_number }}"
-                                    name="nrc_number" required>
                             </div>                           
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">Address</label>
-                                <input type="text" class="form-control" id="address" name="address" value="{{ $employee->address }}" required>
+                            <div class="form-group col-md-4">
+                                <label for="series">Series</label>
+                                <input type="text" class="form-control" id="series" value="{{ $food->series }}" name="series"
+                                    required>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label for="inputState">State</label>
-                                <select class="form-control" name="state" id="state" required>
-                                    <option value="option_select" disabled selected>Select State</option>
-                                    @foreach ($states as $state)
-                                        <option value="{{optional($state)->code}}" {{ $employee->state == $state->code ? 'selected' : ''}}>
-                                            {{ $state->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                            <div class="form-group col-md-4">
+                                <label for="type">Type</label>
+                                <input type="text" class="form-control" id="type" value="{{ $food->type }}" name="type"
+                                    required>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label for="township" class="h5">City/Township</label>
-                                    <div class="m-b-15">
-                                        <select class="form-control" name="city" id="city" required>
-                                            
-                                            <option value="{{$employee->city}}" selected>{{optional($employee)->city}}</option>
-                                        </select>
-                                    </div>
+                            <div class="form-group col-md-4">
+                                <label for="category">Category</label>
+                                <input type="text" class="form-control" id="Category" value="{{ $food->category }}" name="category"
+                                    required>
                             </div>
-                        </div>
+                        </div>               
                         <div class="row">
                             <div class="col-md-8">
-                                <label for="image" class="h5">Upload Profile Image:</label>
+                                <label for="image" class="h5">Upload Image:</label>
                                 <div class="col-mr-3"></div>
-                                <input id="logo-file" type="file" name="avatar" onchange="loadFile(event)"
+                                <input id="logo-file" type="file" name="image" onchange="loadFile(event)"
                                     style="width:100px" />
                                 <img id="output" class=" cursor-pointer" onclick="changePhoto()"
                                     onmouseover="this.style.cursor ='pointer' " />
@@ -185,33 +116,5 @@
         var changePhoto = function() {
             document.getElementById('logo-file').click()
         }
-    </script>
-    <script>
-        // accessing townships and cities js
-        $('#state').on('change', function() {
-            // console.log(this.value);
-            var state_id = this.value;
-            $.ajax({
-                url: "{{ route('getTownships') }}",
-                type: "GET",
-                data: {
-                    "state_id": state_id,
-                },
-                cache: false,
-
-                success: function(result) {
-                    if (result) {
-                        $("#city").empty();
-                        $.each(result, function(key, value) {
-                            $("#city").append('<option value="' + value.name + '">' + value.name +
-                                '</option>');
-                            //console.log(key, value);
-                        });
-                    } else {
-                        $("#city").empty();
-                    }
-                }
-            });
-        });
     </script>
 @endsection

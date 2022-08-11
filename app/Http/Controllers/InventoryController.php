@@ -47,4 +47,51 @@ class InventoryController extends Controller
 
         return view('inventory.editFood', ['food' => $food]);
     }
+
+    public function foodUpdate(Request $request){
+        $food = Inventory::findOrFail($request->id);
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'type' => 'required',
+            'phone' => 'required',
+            'nrc_no' => 'required',
+            'nrc_location' => 'required',
+            'nrc_type' => 'required',
+            'nrc_number' => 'required',
+            'password' => 'required',
+            'address' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+        ]);
+
+        $employee->name = $validated['name'];
+        $employee->email = $validated['email'];
+        $employee->type = $validated['type'];
+        $employee->phone = $validated['phone'];
+        $employee->nrc_no = $validated['nrc_no'];
+        $employee->nrc_location = $validated['nrc_location'];
+        $employee->nrc_type = $validated['nrc_type'];
+        $employee->nrc_number = $validated['nrc_number'];
+        $employee->address = $validated['address'];
+        $employee->state = $validated['state'];
+        $employee->city = $validated['city'];
+
+        if ($request->file('avatar')) {
+            $image = $request->file('avatar');
+            $destinationPath = 'img/employee';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            if($employee->avatar == ''){
+                $image->move($destinationPath, $profileImage);
+                $employee->avatar = $profileImage;
+            }else {
+                DeleteImage($destinationPath, $employee->avatar);
+                $image->move($destinationPath, $profileImage);
+                $employee->avatar = $profileImage;
+            }
+        }
+        $employee->save();
+
+        return redirect('employees')->with('success', 'Employee Edited Successfully !');
+    }
 }

@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/foods/create', [InventoryController::class, 'foodCreate'])->name('foods.create');
     Route::post('/foods/store', [InventoryController::class, 'foodStore'])->name('foods.store');
     Route::get('/foods/edit', [InventoryController::class, 'foodEdit'])->name('foods.edit');
+    Route::post('/foods/update', [InventoryController::class, 'foodUpdate'])->name('foods.update');
 
 });
 
