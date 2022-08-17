@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Edit Food')
+@section('title', 'Create Drink')
 
 @section('styles')
     {{-- <link href="{{ asset('assets/vendors/select2/select2.css') }}" rel="stylesheet"> --}}
@@ -13,30 +13,29 @@
         <div class="page-header">
             <div class="header-sub-title">
                 <nav class="breadcrumb breadcrumb-dash">
-                    <a href="{{ route('foods') }}" class="breadcrumb-item h6"><i
-                            class="anticon anticon-shopping m-r-5"></i>Foods</a>
-                    <span class="breadcrumb-item active h6">Edit</span>
+                    <a href="{{ route('drinks') }}" class="breadcrumb-item h6"><i
+                            class="anticon anticon-shopping m-r-5"></i>Drinks</a>
+                    <span class="breadcrumb-item active h6">Create</span>
                 </nav>
             </div>
         </div>
 
         <div class="card">
             <div class="card-body">
-                <h3>Create new Food</h3>
+                <h3>Create new Drink</h3>
                 <div class="m-t-25">
-                    <form method="post" action="{{ route('foods.update') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('drinks.store') }}" enctype="multipart/form-data">
                          @csrf
-                         <input type="hidden" name="id" value="{{ $food->id}}">
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $food->name }}"
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name"
                                     required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="price">Price</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" id="price" value="{{ $food->price }}">
+                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" id="price">
                                     <div class="input-group-append">
                                         <span class="input-group-text">.00</span>
                                     </div>
@@ -44,24 +43,24 @@
                             </div> 
                             <div class="form-group col-md-4">
                                 <label for="quantity">Quantity</label>
-                                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ $food->quantity }}"
+                                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity"
                                     required>
                             </div>                           
                         </div>
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="series">Series</label>
-                                <input type="text" class="form-control" id="series" value="{{ $food->series }}" name="series"
+                                <input type="text" class="form-control" id="series" placeholder="Series" name="series"
                                     required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="type">Type</label>
-                                <input type="text" class="form-control" id="type" value="{{ $food->type }}" name="type"
+                                <input type="text" class="form-control" id="type" placeholder="Type" name="type"
                                     required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="category">Category</label>
-                                <input type="text" class="form-control" id="Category" value="{{ $food->category }}" name="category"
+                                <input type="text" class="form-control" id="Category" placeholder="Cateogry" name="category"
                                     required>
                             </div>
                         </div>               

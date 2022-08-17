@@ -38,10 +38,10 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="{{ route('foods') }}">Food</a>
+                        <a href="{{ route('foods') }}"><span class="anticon anticon-cloud mr-1"></span>Food</a>
                     </li>
                     <li>
-                        <a href="">Drinks</a>
+                        <a href="{{ route('drinks') }}"><span class="anticon anticon-coffee mr-2"></span>Drinks</a>
                     </li>
                 </ul>
             </li>

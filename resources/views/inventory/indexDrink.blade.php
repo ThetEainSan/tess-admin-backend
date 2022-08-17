@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Foods')
+@section('title','Drinks')
 @section('styles')
     <link href="{{ asset('assets/vendors/datatables/dataTables.bootstrap.min.css') }}" rel="stylesheet">
 @endsection
@@ -36,8 +36,8 @@
         <div class="card-body">
             <div class="d-flex">
                 <h4 class="mr-auto">Foods</h4>
-                <a class="btn btn-rounded btn-primary text-right ml-auto" href="{{ route('foods.create') }}" role="button">
-                    <i class="anticon anticon-plus-circle mr-2" style="font-size:19px;"></i>Create New Food</a>
+                <a class="btn btn-rounded btn-primary text-right ml-auto" href="{{ route('drinks.create') }}" role="button">
+                    <i class="anticon anticon-plus-circle mr-2" style="font-size:19px;"></i>Create New Drink</a>
             </div>           
             <div class="m-t-25">
                 <table id="data-table" class="table">
@@ -54,22 +54,22 @@
                         @php
                             $i = 0;
                         @endphp
-                        @foreach($foods as $food)
+                        @foreach($drinks as $drink)
                         @php
                             ++$i;
                         @endphp
                         <tr class="text-center">
                             <td>{{ $i }}.</td>
-                            <td>{{ $food->name }}</td>
-                            <td>{{ $food->price }}</td>
-                            <td>{{ $food->quantity }}</td>
+                            <td>{{ $drink->name }}</td>
+                            <td>{{ $drink->price }}</td>
+                            <td>{{ $drink->quantity }}</td>
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary mr-2" href="" role="button">
                                         <i class="anticon anticon-info-circle mr-2"></i>View</a>
-                                    <a class="btn btn-info" href="{{ route('foods.edit',['id'=>$food->id]) }}" role="button">
+                                    <a class="btn btn-info" href="{{ route('drinks.edit', ['id'=>$drink->id]) }}" role="button">
                                         <i class="anticon anticon-edit mr-2"></i>Edit</a>
-                                    <a class="btn btn-danger ml-2" href="{{ route('foods.delete',['id'=>$food->id]) }}" role="button">
+                                    <a class="btn btn-danger ml-2" href="{{ route('drinks.delete', ['id'=>$drink->id]) }}" role="button">
                                         <i class="anticon anticon-delete mr-2"></i></i>Delete</a>
                                 </div>
                             </td>

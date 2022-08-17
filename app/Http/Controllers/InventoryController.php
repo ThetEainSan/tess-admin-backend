@@ -52,46 +52,130 @@ class InventoryController extends Controller
         $food = Inventory::findOrFail($request->id);
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|email',
+            'price' => 'required',
+            'quantity' => 'required',
+            'series' => 'required',
             'type' => 'required',
-            'phone' => 'required',
-            'nrc_no' => 'required',
-            'nrc_location' => 'required',
-            'nrc_type' => 'required',
-            'nrc_number' => 'required',
-            'password' => 'required',
-            'address' => 'required',
-            'state' => 'required',
-            'city' => 'required',
+            'category' => 'required',
         ]);
 
-        $employee->name = $validated['name'];
-        $employee->email = $validated['email'];
-        $employee->type = $validated['type'];
-        $employee->phone = $validated['phone'];
-        $employee->nrc_no = $validated['nrc_no'];
-        $employee->nrc_location = $validated['nrc_location'];
-        $employee->nrc_type = $validated['nrc_type'];
-        $employee->nrc_number = $validated['nrc_number'];
-        $employee->address = $validated['address'];
-        $employee->state = $validated['state'];
-        $employee->city = $validated['city'];
+        $food->name = $validated['name'];
+        $food->price = $validated['price'];
+        $food->quantity = $validated['quantity'];
+        $food->series = $validated['series'];
+        $food->type = $validated['type'];
+        $food->category = $validated['category'];
 
-        if ($request->file('avatar')) {
-            $image = $request->file('avatar');
-            $destinationPath = 'img/employee';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            if($employee->avatar == ''){
-                $image->move($destinationPath, $profileImage);
-                $employee->avatar = $profileImage;
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $destinationPath = 'img/food';
+            $foodImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            if($food->image == ''){
+                $image->move($destinationPath, $foodImage);
+                $employee->avatar = $foodImage;
             }else {
-                DeleteImage($destinationPath, $employee->avatar);
-                $image->move($destinationPath, $profileImage);
-                $employee->avatar = $profileImage;
+                DeleteImage($destinationPath, $food->image);
+                $image->move($destinationPath, $foodImage);
+                $food->image = $foodImage;
             }
         }
-        $employee->save();
+        $food->save();
 
-        return redirect('employees')->with('success', 'Employee Edited Successfully !');
+        return redirect('foods')->with('success', 'Food Updated Successfully !');
+    }
+
+    public function foodDelete(Request $request) {
+        $food = Inventory::findOrFail($request->id);
+        $destinationPath = 'img/food';
+        DeleteImage($destinationPath, $food->image);
+        $food->delete();
+    
+        return redirect('foods')->with('success', 'Food Deleted Duccessfully!');
+    }
+
+    public function drinkIndex(Request $request){
+        $drinks = Inventory::where('FOD', 'drinks')->get();
+
+        return view('inventory.indexDrink', ['drinks' => $drinks]);
+    }
+
+    public function drinkCreate(Request $request){
+        return view('inventory.createDrink');
+    }
+
+    public function drinkStore(Request $request){
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required',
+            'quantity' => 'required',
+            'series' => 'required',
+            'type' => 'required',
+            'category' => 'required',
+            'image' => 'required',
+        ]);
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $destinationPath = 'img/drink';
+            $drinkImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $drinkImage);
+        }
+
+       $drink = Inventory::Create($validated);
+       $drink->image = $drinkImage;
+       $drink->FOD = 'drinks';
+       $drink->save();
+
+       return redirect('drinks')->with('success', 'Drink Created Successfully!');
+    }
+
+    public function drinkEdit(Request $request){
+        $drink = Inventory::find($request->id);
+
+        return view('inventory.editDrink', ['drink' => $drink]);
+    }
+
+    public function drinkUpdate(Request $request){
+        $drink = Inventory::findOrFail($request->id);
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required',
+            'quantity' => 'required',
+            'series' => 'required',
+            'type' => 'required',
+            'category' => 'required',
+        ]);
+
+        $drink->name = $validated['name'];
+        $drink->price = $validated['price'];
+        $drink->quantity = $validated['quantity'];
+        $drink->series = $validated['series'];
+        $drink->type = $validated['type'];
+        $drink->category = $validated['category'];
+
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $destinationPath = 'img/drink';
+            $drinkImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            if($drink->image == ''){
+                $image->move($destinationPath, $drinkImage);
+                $employee->avatar = $drinkImage;
+            }else {
+                DeleteImage($destinationPath, $drink->image);
+                $image->move($destinationPath, $drinkImage);
+                $drink->image = $drinkImage;
+            }
+        }
+        $drink->save();
+
+        return redirect('drinks')->with('success', 'Drink Updated Successfully !');
+    }
+
+    public function drinkDelete(Request $request){
+        $drink = Inventory::findOrFail($request->id);
+        $destinationPath = 'img/drink';
+        DeleteImage($destinationPath, $drink->image);
+        $drink->delete();
+    
+        return redirect('drinks')->with('success', 'Drink Deleted Duccessfully!');
     }
 }

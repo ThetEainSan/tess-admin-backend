@@ -50,6 +50,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/foods/store', [InventoryController::class, 'foodStore'])->name('foods.store');
     Route::get('/foods/edit', [InventoryController::class, 'foodEdit'])->name('foods.edit');
     Route::post('/foods/update', [InventoryController::class, 'foodUpdate'])->name('foods.update');
+    Route::get('/foods/delete', [InventoryController::class, 'foodDelete'])->name('foods.delete');
 
+    //Drinks
+    Route::get('/drinks', [InventoryController::class, 'drinkIndex'])->name('drinks');
+    Route::get('/drinks/create', [InventoryController::class, 'drinkCreate'])->name('drinks.create');
+    Route::post('/drinks/store', [InventoryController::class, 'drinkStore'])->name('drinks.store');
+    Route::get('/drinks/edit', [InventoryController::class, 'drinkEdit'])->name('drinks.edit');
+    Route::post('/drinks/update', [InventoryController::class, 'drinkUpdate'])->name('drinks.update');
+    Route::get('/drinks/delete', [InventoryController::class, 'drinkDelete'])->name('drinks.delete');
 });
 

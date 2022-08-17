@@ -7,7 +7,7 @@
     <title>@yield('title')</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/logo/Tess.png">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo/Tess.png') }}">
 
     <!-- page css -->
     <link href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
@@ -42,8 +42,8 @@
             <div class="header">
                 <div class="logo logo-dark">
                     <a href="{{route('dashboard')}}">
-                        <img src="assets/images/logo/logo.png" alt="Logo">
-                        <img class="logo-fold" src="assets/images/logo/logo-fold.png" alt="Logo">
+                        <img class="img-fluid" src="{{ asset('assets/images/logo/tess-vertical.png') }}" alt="Logo">
+                        <img class="logo-fold" src="{{ asset('assets/images/logo/tess-fold-1.png') }}" alt="Logo" style="width:100%; height:100%;">
                     </a>
                 </div>
                 {{-- <div class="logo logo-white">
