@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use DB;
 use Hash;
+use Auth;
 use App\helpers;
 
 class AdminController extends Controller
 {
     public function index(){
-        $admins = User::all();
+        $admins = User::where('id', '!=', Auth::user()->id)->get();
         return view('admin.index',['admins' => $admins]);
     }
 
@@ -139,5 +140,11 @@ class AdminController extends Controller
         $admin->delete();
     
         return redirect('admins')->with('success', 'Admin Deleted !');
+    }
+
+    public function details(Request $request){
+        $admin = User::find($request->id);
+
+        return view('admin.detail', ['admin' => $admin]);
     }
 }

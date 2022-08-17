@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Enlink - Admin Dashboard Template</title>
+    <title>Tess</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('assets/images/logo/favicon.png')}}">
+    <link rel="shortcut icon" href="{{asset('assets/images/logo/Tess.png')}}">
 
     <!-- page css -->
 
@@ -32,7 +32,7 @@
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">
-                                            <label class="font-weight-semibold" for="userName">{{ __('Email Address') }}</label>
+                                            <label class="font-weight-semibold" for="userName">{{ __('Email') }}</label>
                                             <div class="input-affix">
                                                 <i class="prefix-icon anticon anticon-user"></i>
                                                 <input type="text" class="form-control" name="email" id="userName" placeholder="Email Address" required>
@@ -63,15 +63,8 @@
                     </div>
                 </div>
                 <div class="d-none d-md-flex p-h-40 justify-content-between">
-                    <span class="">© 2022 ThemeNate</span>
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a class="text-dark text-link" href="">Legal</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="text-dark text-link" href="">Privacy</a>
-                        </li>
-                    </ul>
+                    <span class="">© 2022 Tess</span>
+                    
                 </div>
             </div>
         </div>

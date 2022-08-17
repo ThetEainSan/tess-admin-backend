@@ -60,7 +60,13 @@
                         @endphp
                         <tr class="text-center">
                             <td>{{ $i }}.</td>
-                            <td>{{ $admin->name }}</td>
+                            <td>
+                                <div class="avatar avatar-image" style="width: 30px; height:30px">
+                                    <img src="{{ asset('img/admin/'. $admin->avatar) }}" alt="admin"
+                                        style="object-fit: cover;">
+                                </div>
+                                {{ $admin->name }}
+                            </td>
                             <td>{{ $admin->email }}</td>
                             <td>{{ $admin->phone }}</td>
                             <td>
@@ -69,7 +75,7 @@
                                     <button class="btn btn-danger btn-sm">Delete</button>
                                 </div> --}}
                                 <div class="btn-group">
-                                    <a class="btn btn-primary mr-2" href="#" role="button">
+                                    <a class="btn btn-primary mr-2" href="{{ route('admins.details', ['id' => $admin->id]) }}" role="button">
                                         <i class="anticon anticon-info-circle mr-2"></i>View</a>
                                     <a class="btn btn-info" href="{{ route('admins.edit', ['id' => $admin->id]) }}" role="button">
                                         <i class="anticon anticon-edit mr-2"></i>Edit</a>

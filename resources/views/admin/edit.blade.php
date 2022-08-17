@@ -22,7 +22,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h3>Create new Admin</h3>
+                <h3>Edit Admin</h3>
                 <div class="m-t-25">
                     <form method="post" action="{{ route('admins.update') }}" enctype="multipart/form-data">
                          @csrf

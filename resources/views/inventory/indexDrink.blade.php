@@ -35,7 +35,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex">
-                <h4 class="mr-auto">Foods</h4>
+                <h4 class="mr-auto">Drinks</h4>
                 <a class="btn btn-rounded btn-primary text-right ml-auto" href="{{ route('drinks.create') }}" role="button">
                     <i class="anticon anticon-plus-circle mr-2" style="font-size:19px;"></i>Create New Drink</a>
             </div>           
@@ -60,13 +60,17 @@
                         @endphp
                         <tr class="text-center">
                             <td>{{ $i }}.</td>
-                            <td>{{ $drink->name }}</td>
+                            <td class="text-left">
+                                <div class="avatar avatar-image" style="width: 30px; height:30px">
+                                    <img src="{{ asset('img/drink/'. $drink->image) }}" alt="drink"
+                                        style="object-fit: cover;">
+                                </div>
+                                {{ $drink->name }}
+                            </td>
                             <td>{{ $drink->price }}</td>
                             <td>{{ $drink->quantity }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-primary mr-2" href="" role="button">
-                                        <i class="anticon anticon-info-circle mr-2"></i>View</a>
                                     <a class="btn btn-info" href="{{ route('drinks.edit', ['id'=>$drink->id]) }}" role="button">
                                         <i class="anticon anticon-edit mr-2"></i>Edit</a>
                                     <a class="btn btn-danger ml-2" href="{{ route('drinks.delete', ['id'=>$drink->id]) }}" role="button">

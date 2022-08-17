@@ -60,13 +60,17 @@
                         @endphp
                         <tr class="text-center">
                             <td>{{ $i }}.</td>
-                            <td>{{ $food->name }}</td>
+                            <td class="text-left">
+                                <div class="avatar avatar-image" style="width: 30px; height:30px">
+                                    <img src="{{ asset('img/food/'. $food->image) }}" alt="food"
+                                        style="object-fit: cover;">
+                                </div>
+                                {{ $food->name }}
+                            </td>
                             <td>{{ $food->price }}</td>
                             <td>{{ $food->quantity }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-primary mr-2" href="" role="button">
-                                        <i class="anticon anticon-info-circle mr-2"></i>View</a>
                                     <a class="btn btn-info" href="{{ route('foods.edit',['id'=>$food->id]) }}" role="button">
                                         <i class="anticon anticon-edit mr-2"></i>Edit</a>
                                     <a class="btn btn-danger ml-2" href="{{ route('foods.delete',['id'=>$food->id]) }}" role="button">

@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admins/edit', [AdminController::class, 'edit'])->name('admins.edit');
     Route::post('/admins/update', [AdminController::class, 'update'])->name('admins.update');
     Route::get('/admins/delete', [AdminController::class, 'delete'])->name('admins.delete');
+    Route::get('/admins/details', [AdminController::class, 'details'])->name('admins.details');
 
     //Employees
     Route::get('/employees', [EmployeeController::class, 'index'])->name('employees');
@@ -43,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/employees/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
     Route::post('/employees/update', [EmployeeController::class, 'update'])->name('employees.update');
     Route::get('/employees/delete', [EmployeeController::class, 'delete'])->name('employees.delete');
+    Route::get('/employees/details', [EmployeeController::class, 'details'])->name('employees.details');
 
     //Foods
     Route::get('/foods', [InventoryController::class, 'foodIndex'])->name('foods');

@@ -140,4 +140,10 @@ class EmployeeController extends Controller
     
         return redirect('employees')->with('success', 'Employee Deleted Duccessfully!');
     }
+    
+    public function details(Request $request){
+        $employee = Employee::find($request->id);
+
+        return view('employee.detail', ['employee' => $employee]);
+    }
 }

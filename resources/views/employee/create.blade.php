@@ -13,7 +13,7 @@
         <div class="page-header">
             <div class="header-sub-title">
                 <nav class="breadcrumb breadcrumb-dash">
-                    <a href="{{ route('admins') }}" class="breadcrumb-item h6"><i
+                    <a href="{{ route('employees') }}" class="breadcrumb-item h6"><i
                             class="anticon anticon-team m-r-5"></i>Employees</a>
                     <span class="breadcrumb-item active h6">Create</span>
                 </nav>
@@ -22,7 +22,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h3>Create new Admin</h3>
+                <h3>Create new Employee</h3>
                 <div class="m-t-25">
                     <form method="post" action="{{ route('employees.store') }}" enctype="multipart/form-data">
                          @csrf
