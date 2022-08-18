@@ -7,7 +7,7 @@
     <title>@yield('title')</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/Tess.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo/tess-fold-1.png') }}">
 
     <!-- page css -->
     <link href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">

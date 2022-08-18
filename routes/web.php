@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,5 +62,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/drinks/edit', [InventoryController::class, 'drinkEdit'])->name('drinks.edit');
     Route::post('/drinks/update', [InventoryController::class, 'drinkUpdate'])->name('drinks.update');
     Route::get('/drinks/delete', [InventoryController::class, 'drinkDelete'])->name('drinks.delete');
+
+    //Reports
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports');
+    Route::get('/reports/details', [ReportController::class, 'details'])->name('reports.details');
+    Route::get('reports/details/export',[ReportController::class,'exportDetails'])->name('reports.exportDetails');
 });
 

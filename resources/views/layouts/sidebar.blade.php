@@ -45,6 +45,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown open">                
+                <a href="{{ route('reports') }}">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-bars"></i>
+                    </span>
+                    <span class="title">Reports</span> 
+                </a>                                      
+            </li>
         </ul>
     </div>
 </div>
