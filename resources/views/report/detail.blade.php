@@ -35,7 +35,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex">
-                    <h4 class="mr-auto">Report Details</h4>
+                    <h4 class="mr-auto">Report Details ({{ $id }})</h4>
                     <a class="btn btn-rounded btn-success text-right ml-auto" href="{{ route('reports.exportDetails',['id' => $bill_id]) }}" role="button">
                     <i class="anticon anticon-download mr-2" style="font-size:19px;"></i>Download Report</a>
                 </div>

@@ -22,7 +22,8 @@ class ReportController extends Controller
 
         return view('report.detail', ['sales' => $sales, 
                                       'total_price' => $report->total_price,
-                                      'bill_id' => $request->id]);
+                                      'bill_id' => $request->id,
+                                      'id' => $report->bill_id]);
     }
     public function exportDetails(Request $request){
         $report = Bill::find($request->id);
